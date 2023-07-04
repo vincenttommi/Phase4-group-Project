@@ -149,6 +149,13 @@ class Buyers(Resource):
         if buyer:
             return jsonify(buyer.serialize())
         return jsonify({'error': 'Buyer not found'}), 404
+    def delete(self, buyer_id):
+        buyer = Buyer.query.get(buyer_id)
+        if buyer:
+            db.session.delete(buyer)
+            db.session.commit()
+            return jsonify({'message': 'Buyer deleted successfully'})
+        return jsonify({'error': 'Buyer not found'}), 404
 
 if __name__ == '__main__':
     app.run(port=5555)
