@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
-# from sqlalchemy_serializer impor, SerializerChain
+# from sqlalchemy_serializer import, SerializerChain
 
 
 

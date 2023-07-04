@@ -13,6 +13,8 @@ flask-cors = "*"
 flask-wtf = "*"
 wtforms = "*"
 "wtforms.validators" = "*"
+flask-restful = "*"
+email-validator = "*"
 
 [dev-packages]
 
