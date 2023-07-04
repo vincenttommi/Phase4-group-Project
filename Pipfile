@@ -10,6 +10,9 @@ faker = "*"
 flask-sqlalchemy = "*"
 sqlalchemy-serializer = "*"
 flask-cors = "*"
+flask-wtf = "*"
+wtforms = "*"
+"wtforms.validators" = "*"
 
 [dev-packages]
 
