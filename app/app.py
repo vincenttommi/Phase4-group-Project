@@ -180,5 +180,8 @@ class BuyersById(Resource):
     
 api.add_resource(BuyersById, '/buyers/<int:buyer_id>')
 
+# api.add_resource(Orders, '/orders')
+# api.add_resource(OrdersById, '/orders/<int:order_id>')
+
 if __name__ == '__main__':
     app.run(port=5555)
