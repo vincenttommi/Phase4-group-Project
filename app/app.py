@@ -161,6 +161,8 @@ class Buyers(Resource):
             return jsonify({'message': 'Buyer created successfully', 'buyer': buyer.serialize()}), 201
         return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
     
+api.add_resource(Buyers, '/buyers')
+
 class BuyersById(Resource):
     def get(self, buyer_id):
         buyer = Buyer.query.get(buyer_id)
