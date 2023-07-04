@@ -143,6 +143,24 @@ class DealersById(Resource):
     
 api.add_resource(DealersById, '/dealers/<int:dealer_id>')
 
+class Buyers(Resource):
+    def get(self):
+        buyers = Buyer.query.all()
+        return jsonify([buyer.serialize() for buyer in buyers])
+
+    def post(self):
+        form = BuyerForm(request.form)
+        if form.validate():
+            buyer = Buyer(
+                name=form.name.data,
+                email=form.email.data,
+                phone_number=form.phone_number.data
+            )
+            db.session.add(buyer)
+            db.session.commit()
+            return jsonify({'message': 'Buyer created successfully', 'buyer': buyer.serialize()}), 201
+        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
+    
 class BuyersById(Resource):
     def get(self, buyer_id):
         buyer = Buyer.query.get(buyer_id)
