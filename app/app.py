@@ -143,12 +143,13 @@ class DealersById(Resource):
     
 api.add_resource(DealersById, '/dealers/<int:dealer_id>')
 
-class Buyers(Resource):
+class BuyersById(Resource):
     def get(self, buyer_id):
         buyer = Buyer.query.get(buyer_id)
         if buyer:
             return jsonify(buyer.serialize())
         return jsonify({'error': 'Buyer not found'}), 404
+    
     def delete(self, buyer_id):
         buyer = Buyer.query.get(buyer_id)
         if buyer:
@@ -156,6 +157,8 @@ class Buyers(Resource):
             db.session.commit()
             return jsonify({'message': 'Buyer deleted successfully'})
         return jsonify({'error': 'Buyer not found'}), 404
+    
+api.add_resource(BuyersById, '/buyers/<int:buyer_id>')
 
 if __name__ == '__main__':
     app.run(port=5555)
