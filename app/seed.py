@@ -2,11 +2,28 @@ from random import choice as rc
 from faker import Faker
 from app import app, db
 from models import Car, Dealer, Buyer, Order
+
 fake = Faker()
+
+# List of car makes and models
+car_makes = ['Toyota', 'Honda', 'Ford', 'Chevrolet', 'Nissan', 'BMW', 'Mercedes-Benz', 'Audi', 'Volkswagen', 'Hyundai',
+             'Kia', 'Subaru', 'Mazda', 'Lexus', 'Jeep', 'GMC', 'Ram', 'Mercedes-Benz', 'Audi', 'Volkswagen', 'Hyundai',
+             'Kia', 'Subaru', 'Mazda', 'Lexus', 'Jeep', 'GMC', 'Ram', 'Ford', 'Chevrolet', 'Nissan', 'Toyota', 'Honda',
+             'BMW', 'Mercedes-Benz', 'Audi', 'Volkswagen', 'Hyundai', 'Kia', 'Subaru', 'Mazda', 'Lexus', 'Jeep', 'GMC',
+             'Ram', 'Ford', 'Chevrolet', 'Nissan', 'Toyota', 'Honda']
+
+car_models = ['Camry', 'Civic', 'Mustang', 'Silverado', 'Altima', '3 Series', 'C-Class', 'A4', 'Golf', 'Elantra',
+              'Soul', 'Outback', 'Mazda3', 'RX', 'Wrangler', 'Sierra', '1500', 'Explorer', 'Tahoe', 'Rogue', 'RAV4',
+              'CR-V', '5 Series', 'E-Class', 'Q5', 'Passat', 'Tucson', 'Sportage', 'Forester', 'CX-5', 'ES',
+              'Grand Cherokee', 'Acadia', '2500', 'F-150', 'Equinox', 'Pathfinder', 'Highlander', 'Pilot', 'X5',
+              'GLE', 'Q7', 'Tiguan', 'Santa Fe', 'Sorento', 'Impreza', 'Mazda6', 'NX', 'Cherokee', 'Terrain']
+
 with app.app_context():
+
     # Drop existing tables and recreate them
     db.drop_all()
     db.create_all()
+
     # Create dealers
     dealers = []
     for _ in range(50):
@@ -18,21 +35,28 @@ with app.app_context():
         dealers.append(dealer)
         db.session.add(dealer)
     db.session.commit()
+    
     # Create cars
     cars = []
     for _ in range(50):
         dealer = rc(dealers)  # Assign a random dealer to the car
+        car_make = rc(car_makes)  # Randomly select a car make from the list
+        car_model = rc(car_models)  # Randomly select a car model from the list
+        price = fake.random_int(min=1000, max=50000)
+        year = fake.year()
+        image = fake.image_url()
         car = Car(
-            car_make=fake.name(),
-            car_model=fake.name(),
-            price=fake.random_int(min=1000, max=50000),
-            year=fake.year(),
-            image=fake.image_url(),
+            car_make=car_make,
+            car_model=car_model,
+            price=price,
+            year=year,
+            image=image,
             dealer=dealer
         )
         cars.append(car)
         db.session.add(car)
     db.session.commit()
+
     # Create buyers
     buyers = []
     for _ in range(50):
@@ -45,6 +69,7 @@ with app.app_context():
         buyers.append(buyer)
         db.session.add(buyer)
     db.session.commit()
+
     # Create orders
     orders = []
     for _ in range(50):
