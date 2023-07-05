@@ -170,7 +170,7 @@ class BuyersById(Resource):
         if buyer:
             return jsonify(buyer.serialize())
         return jsonify({'error': 'Buyer not found'}), 404
-
+    
     def delete(self, buyer_id):
         buyer = Buyer.query.get(buyer_id)
         if buyer:
