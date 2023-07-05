@@ -39,7 +39,8 @@ with app.app_context():
         buyer = Buyer(
             name=fake.name(),
             email=fake.email(),
-            phone_number=fake.phone_number()
+            phone_number=fake.phone_number(),
+            password=fake.password()
         )
         buyers.append(buyer)
         db.session.add(buyer)
