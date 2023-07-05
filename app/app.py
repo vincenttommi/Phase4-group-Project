@@ -19,6 +19,7 @@ db.init_app(app)
 # Perform database migrations
 migrate = Migrate(app, db)
 
+<<<<<<< HEAD
 # Enable CORS
 CORS(app)
 
@@ -183,5 +184,9 @@ api.add_resource(BuyersById, '/buyers/<int:buyer_id>')
 # api.add_resource(Orders, '/orders')
 # api.add_resource(OrdersById, '/orders/<int:order_id>')
 
+=======
+
+
+>>>>>>> 75a7db0 (models)
 if __name__ == '__main__':
     app.run(port=5555)
