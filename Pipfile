@@ -15,6 +15,7 @@ wtforms = "*"
 "wtforms.validators" = "*"
 flask-restful = "*"
 email-validator = "*"
+datetime = "*"
 
 [dev-packages]
 

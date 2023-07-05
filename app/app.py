@@ -4,7 +4,8 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_restful import Api, Resource
 from wtforms import Form, StringField, FloatField, IntegerField
-from wtforms.validators import DataRequired, Email, Length
+from wtforms.validators import DataRequired, Email, Length, NumberRange, URL
+from datetime import datetime
 
 from models import db, Car, Dealer, Buyer
 
@@ -15,7 +16,7 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 
 # Initialize the database
 db.init_app(app)
-
+   
 # Perform database migrations
 migrate = Migrate(app, db)
 
@@ -29,8 +30,8 @@ class CarForm(Form):
     car_make = StringField('Car Make', validators=[DataRequired()])
     car_model = StringField('Car Model', validators=[DataRequired()])
     price = FloatField('Price', validators=[DataRequired()])
-    year = IntegerField('Year', validators=[DataRequired()])
-    image = StringField('Image URL', validators=[DataRequired(), Length(max=255)])
+    year = IntegerField('Year', validators=[DataRequired(), NumberRange(1900, datetime.now().year)])
+    image = StringField('Image URL', validators=[DataRequired(), Length(max=255), URL()])
     dealer_id = IntegerField('Dealer ID', validators=[DataRequired()])
 
 class DealerForm(Form):
