@@ -1,11 +1,8 @@
 from sqlalchemy import ForeignKey
-<<<<<<< HEAD
 # from sqlalchemy_serializer import SerializerMixin, SerializerChain
-=======
 from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy_serializer impor, SerializerChain
 
->>>>>>> 75a7db0 (models)
 
 db = SQLAlchemy()
 

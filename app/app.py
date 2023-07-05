@@ -8,6 +8,7 @@ from wtforms.validators import DataRequired, Email, Length, NumberRange, URL
 from datetime import datetime
 
 from models import db, Car, Dealer, Buyer, Order
+from models import Order, db, Car, Dealer, Buyer
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
@@ -181,26 +182,42 @@ class BuyersById(Resource):
     
 api.add_resource(BuyersById, '/buyers/<int:buyer_id>')
 
-class Orders(Resource):
-    def get(self):
-        orders = Order.query.all()
-        return jsonify([order.serialize() for order in orders])
 
-    def post(self):
-        form = OrderForm(request.form)
-        if form.validate():
-            order = Order(
-                car_id=form.car_id.data,
-                car_price=form.car_price.data,
-                buyer_id=form.buyer_id.data
-            )
-            db.session.add(order)
+
+
+ 
+#getting class by id
+class OrdersById(Resource):
+    def get(self, order_id):
+        order  = Order.query.get(order_id)
+        if order:
+            return jsonify(order.serialize())
+        return jsonify({'error': 'Order nof Found'}), 404
+    
+    def delete(self,order_id):
+        order = Order.query.get(order_id)
+        if order:
+            db.session.delete(order)
             db.session.commit()
-            return jsonify({'message': 'Order created successfully', 'order': order.serialize()}), 201
-        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
+            return jsonify({'message':'Order Deleted successfully'})
+        return jsonify({'error': 'Order not found'}),404
+    
+    
+    
+     
+            
+    
+    
+        
+        
+        
+        
+        
+       
+        
+    
 
-api.add_resource(Orders, '/orders')
-
+#\ api.add_resource(Orders, '/orders')
 # api.add_resource(OrdersById, '/orders/<int:order_id>')
 
 if __name__ == '__main__':
