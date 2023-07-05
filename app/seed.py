@@ -20,10 +20,10 @@ car_models = ['Camry', 'Civic', 'Mustang', 'Silverado', 'Altima', '3 Series', 'C
 
 def generate_phone_number():
     country_code = "(254)"
-    random_numbers = fake.random_int(min=100000000, max=999999999)
-    formatted_number = f"{country_code}{random_numbers:09}"
-    formatted_number_with_dashes = "-".join([formatted_number[i:i+3] for i in range(0, 12, 3)])
-    return formatted_number_with_dashes
+    random_numbers = fake.random_int(min=100, max=999)
+    formatted_number = f"{country_code}{random_numbers:03}"
+    formatted_number += "-".join([f"{fake.random_int(min=100, max=999):03}" for _ in range(3)])
+    return formatted_number
 
 with app.app_context():
 
