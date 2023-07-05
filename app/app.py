@@ -182,11 +182,26 @@ class BuyersById(Resource):
     
 api.add_resource(BuyersById, '/buyers/<int:buyer_id>')
 
+class Orders(Resource):
+    def get(self):
+        orders = Order.query.all()
+        return jsonify([order.serialize() for order in orders])
 
+    def post(self):
+        form = OrderForm(request.form)
+        if form.validate():
+            order = Order(
+                car_id=form.car_id.data,
+                car_price=form.car_price.data,
+                buyer_id=form.buyer_id.data
+            )
+            db.session.add(order)
+            db.session.commit()
+            return jsonify({'message': 'Order created successfully', 'order': order.serialize()}), 201
+        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
 
+api.add_resource(Orders, '/orders')
 
- 
-#getting class by id
 class OrdersById(Resource):
     def get(self, order_id):
         order  = Order.query.get(order_id)
@@ -201,24 +216,8 @@ class OrdersById(Resource):
             db.session.commit()
             return jsonify({'message':'Order Deleted successfully'})
         return jsonify({'error': 'Order not found'}),404
-    
-    
-    
-     
-            
-    
-    
-        
-        
-        
-        
-        
-       
-        
-    
 
-#\ api.add_resource(Orders, '/orders')
-# api.add_resource(OrdersById, '/orders/<int:order_id>')
+api.add_resource(OrdersById, '/orders/<int:order_id>') 
 
 if __name__ == '__main__':
     app.run(port=5555)
