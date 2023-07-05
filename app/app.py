@@ -8,7 +8,6 @@ from wtforms.validators import DataRequired, Email, Length, NumberRange, URL
 from datetime import datetime
 
 from models import db, Car, Dealer, Buyer, Order
-from models import Order, db, Car, Dealer, Buyer
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
