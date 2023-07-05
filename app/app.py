@@ -7,7 +7,7 @@ from wtforms import Form, StringField, FloatField, IntegerField
 from wtforms.validators import DataRequired, Email, Length, NumberRange, URL
 from datetime import datetime
 
-from models import db, Car, Dealer, Buyer
+from models import db, Car, Dealer, Buyer, Order
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
@@ -20,7 +20,6 @@ db.init_app(app)
 # Perform database migrations
 migrate = Migrate(app, db)
 
-<<<<<<< HEAD
 # Enable CORS
 CORS(app)
 
@@ -182,12 +181,27 @@ class BuyersById(Resource):
     
 api.add_resource(BuyersById, '/buyers/<int:buyer_id>')
 
-# api.add_resource(Orders, '/orders')
+class Orders(Resource):
+    def get(self):
+        orders = Order.query.all()
+        return jsonify([order.serialize() for order in orders])
+
+    def post(self):
+        form = OrderForm(request.form)
+        if form.validate():
+            order = Order(
+                car_id=form.car_id.data,
+                car_price=form.car_price.data,
+                buyer_id=form.buyer_id.data
+            )
+            db.session.add(order)
+            db.session.commit()
+            return jsonify({'message': 'Order created successfully', 'order': order.serialize()}), 201
+        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
+
+api.add_resource(Orders, '/orders')
+
 # api.add_resource(OrdersById, '/orders/<int:order_id>')
 
-=======
-
-
->>>>>>> 75a7db0 (models)
 if __name__ == '__main__':
     app.run(port=5555)
