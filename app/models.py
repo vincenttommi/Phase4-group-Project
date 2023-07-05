@@ -1,6 +1,8 @@
 from sqlalchemy import ForeignKey
 # from sqlalchemy_serializer import SerializerMixin, SerializerChain
 from flask_sqlalchemy import SQLAlchemy
+# from sqlalchemy_serializer impor, SerializerChain
+
 
 db = SQLAlchemy()
 
