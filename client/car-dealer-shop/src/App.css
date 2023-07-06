@@ -1,38 +1,154 @@
-.App {
-  text-align: center;
-}
+/* styles.css */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.SearchBarContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.SearchBarInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  font-size: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SearchResults {
+  margin-top: 10px;
+}
+
+.SearchResults p {
+  margin: 5px 0;
+}
+
+/* styles.css */
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color:black;
+  color: #fff;
+  padding: 10px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin-right: 10px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+}
+
+/* Home page styles */
+.home {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.home h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* About page styles */
+.about {
+  padding: 20px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+.about h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.about p {
+  color: #666;
+}
+
+/* Contact page styles */
+.contact {
+  padding: 20px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+.contact h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.contact p {
+  color: #666;
+}
+
+/* SearchBar styles */
+.search-bar {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* LoginForm styles */
+.login-form {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.login-form input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: navy;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Car List styles */
+.car-list {
+  padding: 20px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+.car-list p {
+  color: #333;
+  margin-bottom: 10px;
 }

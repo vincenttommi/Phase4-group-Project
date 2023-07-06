@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import LoginForm from './components/LoginForm';
+import Footer from './components/Footer';
+
 
 function App() {
+  const [setLoginFormVisible] = useState(false);
+  const handleLoginClick = () => {
+    setLoginFormVisible(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navbar onLoginClick={handleLoginClick} />
+        <Routes>
+          <Route path="/Home" element={<Home/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<LoginForm />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
