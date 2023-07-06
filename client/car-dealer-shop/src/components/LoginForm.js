@@ -57,7 +57,7 @@ const LoginForm = () => {
       // Perform signup logic here
       try {
         // Make a request to the backend to create a new user
-        const response = await fetch('http://127.0.0.1:5555/buyers', {
+        const response = await fetch('http://127.0.0.1:5000/buyers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password, name, dateOfBirth, email }),
@@ -77,7 +77,7 @@ const LoginForm = () => {
       // Perform login logic here
       try {
         // Make a request to the backend to authenticate the user
-        const response = await fetch('http://127.0.0.1:5555/buyers', {
+        const response = await fetch('http://127.0.0.1:5000/buyers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password }),

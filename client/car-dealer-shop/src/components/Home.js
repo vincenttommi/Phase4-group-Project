@@ -87,6 +87,41 @@ const Home = () => {
           <h3>Car Model 2</h3>
           <p>Price: $15000</p>
         </div>
+        <div className="car-card">
+          <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Car 2" />
+          <h3>Car Model 2</h3>
+          <p>Price: $15000</p>
+        </div>
+        <div className="car-card">
+          <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Car 2" />
+          <h3>Car Model 2</h3>
+          <p>Price: $15000</p>
+        </div>
+        <div className="car-card">
+          <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Car 2" />
+          <h3>Car Model 2</h3>
+          <p>Price: $15000</p>
+        </div>
+        <div className="car-card">
+          <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Car 2" />
+          <h3>Car Model 2</h3>
+          <p>Price: $15000</p>
+        </div>
+        <div className="car-card">
+          <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Car 2" />
+          <h3>Car Model 2</h3>
+          <p>Price: $15000</p>
+        </div>
+        <div className="car-card">
+          <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Car 2" />
+          <h3>Car Model 2</h3>
+          <p>Price: $15000</p>
+        </div>
+         <div className="car-card">
+          <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Car 2" />
+          <h3>Car Model 2</h3>
+          <p>Price: $15000</p>
+        </div>
         {/* Add more car cards */}
       </div>
 
