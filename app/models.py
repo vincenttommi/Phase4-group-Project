@@ -1,12 +1,11 @@
-from sqlalchemy import ForeignKey
-# from sqlalchemy_serializer import SerializerMixin, SerializerChain
 from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy_serializer impor, SerializerChain
+from sqlalchemy import ForeignKey
+from sqlalchemy_serializer import SerializerMixin
 
 
 db = SQLAlchemy()
 
-class Car(db.Model):
+class Car(db.Model, SerializerMixin):
     __tablename__ = 'cars'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +22,18 @@ class Car(db.Model):
 
     serialize_rules = ('-dealer.cars', '-owner.orders',)
 
-class Dealer(db.Model):
+    def serialize(self):
+        return {
+            'id': self.id,
+            'car_make': self.car_make,
+            'car_model': self.car_model,
+            'price': self.price,
+            'year': self.year,
+            'image': self.image,
+            'dealer_id': self.dealer_id
+        }
+
+class Dealer(db.Model, SerializerMixin):
     __tablename__ = 'dealers'
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(100), nullable=False)
@@ -35,7 +45,7 @@ class Dealer(db.Model):
     #     .include('cars')
     # )
 
-class Buyer(db.Model):
+class Buyer(db.Model, SerializerMixin):
     __tablename__ = 'buyers'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -49,7 +59,7 @@ class Buyer(db.Model):
     #     .include('cars')
     # )
 
-class Order(db.Model):
+class Order(db.Model, SerializerMixin):
     __tablename__ = 'orders'
     id = db.Column(db.Integer, primary_key=True)
     car_id = db.Column(db.Integer, db.ForeignKey('cars.id'), nullable=False)
