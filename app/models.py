@@ -40,10 +40,13 @@ class Dealer(db.Model, SerializerMixin):
     email = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
 
-    # serialize_rules = (
-    #     SerializerChain()
-    #     .include('cars')
-    # )
+    def serialize(self):
+        return {
+            'id': self.id,
+            'company_name': self.company_name,
+            'email': self.email,
+            'phone_number': self.phone_number
+        }
 
 class Buyer(db.Model, SerializerMixin):
     __tablename__ = 'buyers'
@@ -52,12 +55,14 @@ class Buyer(db.Model, SerializerMixin):
     email = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(100))
-    
 
-    # serialize_rules = (
-    #     SerializerChain()
-    #     .include('cars')
-    # )
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'phone_number': self.phone_number,
+        }
 
 class Order(db.Model, SerializerMixin):
     __tablename__ = 'orders'
@@ -66,3 +71,12 @@ class Order(db.Model, SerializerMixin):
     car_price = db.Column(db.Float, nullable=False)
     buyer_id = db.Column(db.Integer, db.ForeignKey('buyers.id'), nullable=False)
     order_date = db.Column(db.DateTime, nullable=False)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'car_id': self.car_id,
+            'car_price': self.car_price,
+            'buyer_id': self.buyer_id,
+            'order_date': self.order_date.strftime('%Y-%m-%d %H:%M:%S') 
+        }

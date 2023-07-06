@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -59,7 +59,7 @@ class Cars(Resource):
     def post(self):
         form = CarForm(request.form)
         if form.validate():
-            car = Car(
+            new_car = Car(
                 car_make=form.car_make.data,
                 car_model=form.car_model.data,
                 price=form.price.data,
@@ -67,10 +67,16 @@ class Cars(Resource):
                 image=form.image.data,
                 dealer_id=form.dealer_id.data
             )
-            db.session.add(car)
+            db.session.add(new_car)
             db.session.commit()
-            return jsonify({'message': 'Car created successfully', 'car': car.serialize()}), 201
-        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
+
+            new_car_serialize = new_car.serialize()
+
+            response = make_response(
+                jsonify({"message": "Car created Successfully"}, new_car_serialize),
+                201
+            )
+            return response
 
 api.add_resource(Cars, '/cars')
 
@@ -92,8 +98,13 @@ class CarsById(Resource):
                 car.year = form.year.data
                 car.image = form.image.data
                 car.dealer_id = form.dealer_id.data
+
                 db.session.commit()
-                return jsonify({'message': 'Car updated successfully', 'car': car.serialize()})
+
+                response = {
+                    'message': 'Car updated successfully', 'car': car.serialize()
+                }
+                return jsonify(response)
             return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
         return jsonify({'error': 'Car not found'}), 404
     
@@ -115,15 +126,21 @@ class Dealers(Resource):
     def post(self):
         form = DealerForm(request.form)
         if form.validate():
-            dealer = Dealer(
+            new_dealer = Dealer(
                 company_name=form.company_name.data,
                 email=form.email.data,
                 phone_number=form.phone_number.data
             )
-            db.session.add(dealer)
+            db.session.add(new_dealer)
             db.session.commit()
-            return jsonify({'message': 'Dealer created successfully', 'dealer': dealer.serialize()}), 201
-        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
+            
+            new_dealer_serialize = new_dealer.serialize()
+
+            response = make_response(
+                jsonify({"message": "Dealer Info added Successfully"}, new_dealer_serialize),
+                201
+            )
+            return response
     
 api.add_resource(Dealers, '/dealers')
     
@@ -152,15 +169,21 @@ class Buyers(Resource):
     def post(self):
         form = BuyerForm(request.form)
         if form.validate():
-            buyer = Buyer(
+            new_buyer = Buyer(
                 name=form.name.data,
                 email=form.email.data,
                 phone_number=form.phone_number.data
             )
-            db.session.add(buyer)
+            db.session.add(new_buyer)
             db.session.commit()
-            return jsonify({'message': 'Buyer created successfully', 'buyer': buyer.serialize()}), 201
-        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
+            
+            new_buyer_serialize = new_buyer.serialize()
+
+            response = make_response(
+                jsonify({"message": "Buyer Info added Successfully"}, new_buyer_serialize),
+                201
+            )
+            return response
     
 api.add_resource(Buyers, '/buyers')
 
@@ -189,15 +212,22 @@ class Orders(Resource):
     def post(self):
         form = OrderForm(request.form)
         if form.validate():
-            order = Order(
+            new_order = Order(
                 car_id=form.car_id.data,
                 car_price=form.car_price.data,
-                buyer_id=form.buyer_id.data
+                buyer_id=form.buyer_id.data,
+                order_date=datetime.now()
             )
-            db.session.add(order)
+            db.session.add(new_order)
             db.session.commit()
-            return jsonify({'message': 'Order created successfully', 'order': order.serialize()}), 201
-        return jsonify({'error': 'Invalid input', 'errors': form.errors}), 400
+
+            new_order_serialize = new_order.serialize()
+
+            response = make_response(
+                jsonify({"message": "Order placed Successfully"}, new_order_serialize),
+                201
+            )
+            return response
 
 api.add_resource(Orders, '/orders')
 
