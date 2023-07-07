@@ -1,42 +1,71 @@
 .footer {
-    background-color: #f4f4f4;
-    padding: 20px;
-    color: #555;
-    font-size: 14px;
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .footer-section {
-    flex-basis: 30%;
-    margin-bottom: 20px;
-  }
-  
-  .footer-section h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .footer-section p {
-    margin-bottom: 5px;
-  }
-  
-  .social-icons li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .social-icons a {
-    color: #555;
-  }
-  
-  .footer-bottom {
-    margin-top: 20px;
-    text-align: center;
-    border-top: 1px solid #342f2f;
-    padding-top: 10px;
-  }
+  background-color: #f2f2f2;
+  padding: 2rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 0 0 25%;
+  margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.social-icons li {
+  margin-right: 1rem;
+}
+
+.comment-section {
+  margin-top: 2rem;
+}
+
+.comment-section h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.comment-section textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.comment-section button {
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.comment-list {
+  margin-top: 1rem;
+}
+
+.comment-list p {
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  color: red;
+}
+
+/* Add additional styles as needed */

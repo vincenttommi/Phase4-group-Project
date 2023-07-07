@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './card.css'
 
 const Card = ({ carId, car_price, addToCart }) => {
   const [car, setCar] = useState(null);

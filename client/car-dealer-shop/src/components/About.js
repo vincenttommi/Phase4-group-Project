@@ -1,7 +1,22 @@
-import React from 'react';
-import './main.css';
+import React, { useState } from 'react';
+import './About.css';
 
 const AboutUs = () => {
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
+
+  const handleInputChange = (e) => {
+    setNewComment(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newComment.trim() !== '') {
+      setComments([...comments, newComment]);
+      setNewComment('');
+    }
+  };
+
   return (
     <div className="about-container">
       <h1 className="about-heading">About Us Page</h1>
@@ -24,6 +39,31 @@ const AboutUs = () => {
       <p className="company-info">
         Nova Dealers continues to innovate and adapt to the changing market trends, embracing new technologies and practices to stay ahead of the competition. As a result, it has gained a loyal customer base and earned a stellar reputation in the automotive industry.
       </p>
+
+      <div className="comment-section">
+        <h3>Leave a Comment</h3>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            value={newComment}
+            onChange={handleInputChange}
+            placeholder="Write your comment here"
+            rows={4}
+          ></textarea>
+          <button type="submit">Submit</button>
+        </form>
+        <div className="comment-list">
+          <h3>Comments</h3>
+          {comments.length === 0 ? (
+            <p>No comments yet.</p>
+          ) : (
+            <ul>
+              {comments.map((comment, index) => (
+                <li key={index}>{comment}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

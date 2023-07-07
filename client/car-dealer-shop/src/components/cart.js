@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PaymentPopup from "./Paymentpopup";
+import PaymentPopup from "./PaymentPopup";
 
 const Cart = ({ cart, removeFromCart }) => {
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);

@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './home.css';
 import Card from './card';
-import PaymentPopup from './Paymentpopup';
+import PaymentPopup from './PaymentPopup';
 
 const Home = () => {
   const [filteredCarModels, setFilteredCarModels] = useState([]);

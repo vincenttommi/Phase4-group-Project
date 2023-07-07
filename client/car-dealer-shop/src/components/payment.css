@@ -1,0 +1,41 @@
+.payment-popup {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .payment-popup h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .payment-popup form {
+    margin-top: 20px;
+  }
+  
+  .payment-popup label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .payment-popup input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .payment-popup button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .payment-popup button:hover {
+    background-color: #45a049;
+  }
+  
+  

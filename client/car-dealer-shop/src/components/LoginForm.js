@@ -8,6 +8,7 @@ const LoginForm = () => {
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [email, setEmail] = useState('');
   const [isSigningUp, setIsSigningUp] = useState(false);
+  const [error, setError] = useState('');
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -31,7 +32,7 @@ const LoginForm = () => {
 
   const handleToggleSignup = () => {
     setIsSigningUp(!isSigningUp);
-
+    setError('');
     // Clear the sign-up form fields when switching to login mode
     if (!isSigningUp) {
       setName('');
@@ -44,19 +45,20 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (isSigningUp && (!name || !dateOfBirth || !email)) {
-      alert('Please provide all the required information.');
+      setError('Please provide all the required information.');
       return;
     }
 
     if (!username || !password) {
-      alert('Please provide your username and password.');
+      setError('Please provide your username and password.');
       return;
     }
+
+    setError('');
 
     if (isSigningUp) {
       // Perform signup logic here
       try {
-        // Make a request to the backend to create a new user
         const response = await fetch('http://127.0.0.1:5000/buyers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -66,18 +68,19 @@ const LoginForm = () => {
         if (response.ok) {
           // User signed up successfully
           alert('Successfully signed up!');
+          window.location.href = './home';
         } else {
-          // Handle signup failure
-          alert('Failed to sign up.');
+          const errorData = await response.json();
+          setError(errorData.message || 'Failed to sign up.');
         }
       } catch (error) {
         console.log('Error:', error);
+        setError('Failed to sign up. Please try again later.');
       }
     } else {
       // Perform login logic here
       try {
-        // Make a request to the backend to authenticate the user
-        const response = await fetch('http://127.0.0.1:5000/buyers', {
+        const response = await fetch('http://127.0.0.1:5000/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password }),
@@ -86,28 +89,29 @@ const LoginForm = () => {
         if (response.ok) {
           // User logged in successfully
           alert('Successfully logged in!');
+          window.location.href = './home';
         } else {
-          // Handle login failure
-          alert('Failed to log in.');
+          const errorData = await response.json();
+          setError(errorData.message || 'Failed to log in.');
         }
       } catch (error) {
         console.log('Error:', error);
+        setError('Failed to log in. Please try again later.');
       }
     }
-
-    window.location.href = './home';
   };
 
   return (
-    <form className="login-form"
-        onSubmit={handleSubmit}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: '1em',
-        }}
-      >
+    <form
+      className="login-form"
+      onSubmit={handleSubmit}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '1em',
+      }}
+    >
       <label>
         Username:
         <input type="text" value={username} onChange={handleUsernameChange} />
@@ -137,6 +141,7 @@ const LoginForm = () => {
           <br />
         </div>
       )}
+      {error && <p className="error-message">{error}</p>}
       <button type="submit">{isSigningUp ? 'Sign Up' : 'Login'}</button>
       <br />
       <button type="button" onClick={handleToggleSignup}>

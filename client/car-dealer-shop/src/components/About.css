@@ -1,0 +1,69 @@
+.about-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .about-heading {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .history-heading {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .company-info {
+    margin-bottom: 10px;
+  }
+  
+  .comment-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  .comment-section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-section form {
+    margin-bottom: 10px;
+  }
+  
+  .comment-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-section button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .comment-list {
+    margin-top: 20px;
+  }
+  
+  .comment-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .comment-list li {
+    margin-bottom: 10px;
+  }
+  
+  .comment-list p {
+    margin: 0;
+  }
+  
+  /* Additional styling as needed */
+  

@@ -110,16 +110,31 @@ body {
 
 .searchbar {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 10vh;
 }
 
 .searchbar-input {
   width: 300px;
-  padding: 0.5rem;
-  font-size: 1rem;
+  height: 30px;
+  padding: 5px;
+  font-size: 14px;
 }
+
+.search-results {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results li {
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: lightgray;
+}
+
 
 
 /* main.css */
