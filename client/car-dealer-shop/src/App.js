@@ -7,6 +7,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import LoginForm from './components/LoginForm';
 import Footer from './components/Footer';
+import Cart from './components/cart';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </div>
