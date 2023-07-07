@@ -5,11 +5,13 @@ import SearchBar from './SearchBar';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './home.css';
 import Card from './card';
+import PaymentPopup from './Paymentpopup';
 
 const Home = () => {
   const [filteredCarModels, setFilteredCarModels] = useState([]);
   const [showSearchBar, setShowSearchBar] = useState(true);
   const [cartItems, setCartItems] = useState([]);
+  const [showPaymentPopup, setShowPaymentPopup] = useState(false);
 
   const carModels = ['Honda', 'Toyota', 'Ford', 'Chevrolet', 'BMW'];
 
@@ -60,6 +62,29 @@ const Home = () => {
     setCartItems([...cartItems, car]);
   };
 
+  const removeFromCart = (carId) => {
+    const updatedCartItems = cartItems.filter((car) => car.carId !== carId);
+    setCartItems(updatedCartItems);
+  };
+
+  const handleUpdate = (carId, updatedCar) => {
+    const updatedCartItems = cartItems.map((car) => {
+      if (car.carId === carId) {
+        return updatedCar;
+      }
+      return car;
+    });
+    setCartItems(updatedCartItems);
+  };
+
+  const handlePayment = () => {
+    setShowPaymentPopup(true);
+  };
+
+  const handlePaymentConfirmation = () => {
+    // Implement payment confirmation functionality
+  };
+ 
   return (
     <div className="home-container">
       <h1 className="home-title">Welcome to Nova Dealers</h1>
@@ -85,22 +110,43 @@ const Home = () => {
         <p key={model}>{model}</p>
       ))}
 
-      <h2>Car Shop</h2>
+<h2>Car Shop</h2>
       <div className="card-container">
-        <Card carId={1} addToCart={addToCart} />
-        <Card carId={2} addToCart={addToCart} />
-        <Card carId={3} addToCart={addToCart} />
+        <Card carId={1} addToCart={addToCart} removeFromCart={removeFromCart} handleUpdate={handleUpdate} />
+        <Card carId={2} addToCart={addToCart} removeFromCart={removeFromCart} handleUpdate={handleUpdate} />
+        <Card carId={3} addToCart={addToCart} removeFromCart={removeFromCart} handleUpdate={handleUpdate} />
+        <Card carId={20} addToCart={addToCart} removeFromCart={removeFromCart} handleUpdate={handleUpdate} />
+        <Card carId={18} addToCart={addToCart} removeFromCart={removeFromCart} handleUpdate={handleUpdate} />
+        
+
+        {/* Add more Card components as needed */}
       </div>
 
       <h2>Cart</h2>
-      <ul>
-        {cartItems.map((car, index) => (
-          <li key={index}>
-            {car.car_make} {car.car_model}
-          </li>
-        ))}
-      </ul>
+      {cartItems.length === 0 ? (
+        <p>No items in the cart</p>
+      ) : (
+        <>
+          <ul>
+            {cartItems.map((car, index) => (
+              <li key={index}>
+                {car.car_make} {car.car_model} {car.car_price}
+                <button onClick={() => removeFromCart(car.carId)}>Remove</button>
+                {/* <button onClick={() => handleUpdate(car.carId, updatedcart)}>Update</button> */}
+              </li>
+            ))}
+          </ul>
+          <button onClick={handlePayment}>Proceed to Payment</button>
+        </>
+      )}
 
+      {showPaymentPopup && (
+        <PaymentPopup
+          cartItems={cartItems}
+          handlePaymentConfirmation={handlePaymentConfirmation}
+          setShowPaymentPopup={setShowPaymentPopup}
+        />
+      )}
       {/* Company Welcome */}
       <div className="company-welcome">
         <h2>Welcome to Nova Dealers</h2>
