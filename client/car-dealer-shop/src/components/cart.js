@@ -22,9 +22,9 @@ const Cart = ({ cart, removeFromCart }) => {
     setShowCart(!showCart);
   };
 
-  // const togglePayment = () => {
-  //   setShowPayment(!showPayment);
-  // };
+  const togglePayment = () => {
+    setShowPayment(!showPayment);
+  };
 
   return (
     <div className="cart">
@@ -36,8 +36,9 @@ const Cart = ({ cart, removeFromCart }) => {
           {cart &&
             cart.map((car) => (
               <div className="cart-item" key={car.id}>
-                <h3>{car.model}</h3>
-                <p>Price: ${car.price}</p>
+                <h3>{car.car_make}</h3>
+                <p>{car.car_model}</p>
+                <img src={car.car_image} alt="Car" />
                 <button onClick={() => removeFromCart(car.id)}>Remove</button>
               </div>
             ))}
@@ -53,6 +54,7 @@ const Cart = ({ cart, removeFromCart }) => {
         </div>
       )}
       <button onClick={toggleCart}>Toggle Cart</button>
+      <button onClick={togglePayment}>Toggle Payment</button>
       {showCart && (
         <div>
           <h2>Cart</h2>
